@@ -4,45 +4,61 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Stack;
 
+public class MazeMaker {
 
-public class MazeMaker{
-	
 	private static int width;
 	private static int height;
-	
+
 	private static Maze maze;
-	
+
 	private static Random randGen = new Random();
 	private static Stack<Cell> uncheckedCells = new Stack<Cell>();
-	
-	
-	public static Maze generateMaze(int w, int h){
+
+	public static Maze generateMaze(int w, int h) {
 		width = w;
 		height = h;
 		maze = new Maze(width, height);
-		
-		//4. select a random cell to start
-		
-		
-		//5. call selectNextPath method with the randomly selected cell
-		
-		
+
+		// 4. select a random cell to start
+		int x = randGen.nextInt(w);
+		int y = randGen.nextInt(h);
+
+		// 5. call selectNextPath method with the randomly selected cell
+		selectNextPath(maze.getCell(x, y));
+
 		return maze;
 	}
 
-	//6. Complete the selectNextPathMethod
+	// 6. Complete the selectNextPathMethod
 	private static void selectNextPath(Cell currentCell) {
 		//A. mark cell as visited
-
+		currentCell.setBeenVisited(true);
+		
 		//B. check for unvisited neighbors using the cell
+		int x = currentCell.getX();
+		int y = currentCell.getY();
+		ArrayList<Cell> neighbors = new ArrayList<Cell>();
+		neighbors.add(maze.getCell(x, y - 1));
+		neighbors.add(maze.getCell(x - 1, y));
+		neighbors.add(maze.getCell(x + 1, y));
+		neighbors.add(maze.getCell(x, y + 1));
 		
 		//C. if has unvisited neighbors,
-		
+		for (int i = 0; i < 4; i++) {
+			if (!neighbors.get(i).hasBeenVisited()) {
+				neighbors.remove(i);
+				i++;
+			}
+		}
 			//C1. select one at random.
+			int rnd = randGen.nextInt(neighbors.size());
+			Cell c = neighbors.get(rnd);
 			
 			//C2. push it to the stack
-		
+			uncheckedCells.push(c);
+			
 			//C3. remove the wall between the two cells
+			
 
 			//C4. make the new cell the current cell and mark it as visited
 		
@@ -63,16 +79,16 @@ public class MazeMaker{
 		
 	}
 
-	//7. Complete the remove walls method.
-	//   This method will check if c1 and c2 are adjacent.
-	//   If they are, the walls between them are removed.
+	// 7. Complete the remove walls method.
+	// This method will check if c1 and c2 are adjacent.
+	// If they are, the walls between them are removed.
 	private static void removeWalls(Cell c1, Cell c2) {
-		
+
 	}
-	
-	//8. Complete the getUnvisitedNeighbors method
-	//   Any unvisited neighbor of the passed in cell gets added
-	//   to the ArrayList
+
+	// 8. Complete the getUnvisitedNeighbors method
+	// Any unvisited neighbor of the passed in cell gets added
+	// to the ArrayList
 	private static ArrayList<Cell> getUnvisitedNeighbors(Cell c) {
 		return null;
 	}
