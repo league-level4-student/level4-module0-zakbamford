@@ -24,9 +24,9 @@ public class Maze {
 
 	//4. This method iterates through the cells and draws them
 	public void draw(Graphics g) {
-		for (Cell[] arr : cells) {
-			for (Cell c : arr) {
-				c.draw(g);
+		for (int i = 0; i < cells.length; i++) {
+			for (int j = 0; j < cells[0].length; j++) {
+				cells[i][j].draw(g);
 			}
 		}
 	}
