@@ -6,13 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.util.Hashtable;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSlider;
@@ -22,15 +17,11 @@ import javax.swing.event.ChangeListener;
 public class ColorSelectionPanel extends JPanel implements MouseListener, ChangeListener, ActionListener {
 	private static final long serialVersionUID = 1L;
 	
-	private static final String FILE = "src/_02_Pixel_Art/save.txt";
-	
 	public static final int MAX_COLOR = 256;
 	
 	private JSlider rSlider;
 	private JSlider gSlider;
 	private JSlider bSlider;
-	
-	private JButton save;
 	
 	private Color color;
 	
@@ -46,8 +37,6 @@ public class ColorSelectionPanel extends JPanel implements MouseListener, Change
 		gSlider = new JSlider(JSlider.VERTICAL);
 		bSlider = new JSlider(JSlider.VERTICAL);
 		
-		save = new JButton("Save");
-		
 		rSlider.setMinimum(0);
 		rSlider.setMaximum(MAX_COLOR - 1);
 		rSlider.setValue(0);
@@ -61,8 +50,6 @@ public class ColorSelectionPanel extends JPanel implements MouseListener, Change
 		rSlider.addChangeListener(this);
 		gSlider.addChangeListener(this);
 		bSlider.addChangeListener(this);
-		
-		save.addActionListener(this);
 		
 		addMouseListener(this);
 		
@@ -84,8 +71,6 @@ public class ColorSelectionPanel extends JPanel implements MouseListener, Change
 		add(gSlider);
 		add(new JLabel("blue"));
 		add(bSlider);
-		
-		add(save);
 	}
 
 	public Color getSelectedColor() {
@@ -140,12 +125,10 @@ public class ColorSelectionPanel extends JPanel implements MouseListener, Change
 		colorLabel.setIcon(new ImageIcon(colorImage));
 		add(colorLabel);
 	}
-	
+
+	@Override
 	public void actionPerformed(ActionEvent e) {
-		try {
-			FileOutputStream o = new FileOutputStream(FILE);
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
+		// TODO Auto-generated method stub
+		
 	}
 }

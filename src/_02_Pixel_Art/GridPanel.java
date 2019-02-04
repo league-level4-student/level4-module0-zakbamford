@@ -67,4 +67,12 @@ public class GridPanel extends JPanel {
 			}
 		}
 	}
+	
+	public Pixel[][] getGrid() {
+		return pixels;
+	}
+	
+	public void setGrid(Pixel[][] grid) {
+		pixels = grid;
+	}
 }

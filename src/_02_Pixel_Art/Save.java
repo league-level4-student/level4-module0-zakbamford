@@ -6,6 +6,10 @@ public class Save implements Serializable {
 	
 	private static final long serialVersionUID = 4344490158969245218L;
 	
-	public final 
+	public final Pixel[][] grid;
+	
+	public Save(Pixel[][] grid) {
+		this.grid = grid;
+	}
 	
 }
